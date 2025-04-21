@@ -23,7 +23,7 @@ public class Employee {
         this.middlename = middlename;
         counterId();
         this.salary = new Random().nextInt(15000, 150000);
-        this.department= new Random().nextInt(1, 6);
+        this.department = new Random().nextInt(1, 6);
     }
 
     public int getId() {
@@ -71,6 +71,6 @@ public class Employee {
     @Override
     public boolean equals(Object obj) {
         Employee employee = (Employee) obj;
-        return name.equals(employee.name) && surname.equals(employee.surname)&&middlename.equals(employee.middlename)&& salary==employee.salary && department==employee.department;
+        return name.equals(employee.name) && surname.equals(employee.surname) && middlename.equals(employee.middlename) && salary == employee.salary && department == employee.department;
     }
 }

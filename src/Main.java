@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         int borderSalary = 120000;
         int department = 2;
-        int indexSalary = 10;
+        int indexSalary = 15;
 
         Employee[] employees = new Employee[10];
         employees[0] = new Employee("Иван", "Иванов", "Иванович");
