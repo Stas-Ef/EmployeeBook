@@ -13,7 +13,7 @@ public class Employee {
 
     public void counterId() {
         id = counter;
-        counter++;
+        ++counter;
 
     }
 
@@ -52,6 +52,18 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
     }
 
     public void setDepartment(int department) {
