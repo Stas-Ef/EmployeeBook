@@ -14,10 +14,10 @@ public class EmployeeBook {
     }
 
     public boolean createEmployee(String name, String surname, String middlename) {
-        for (Employee e : listOfEmployees) {
-            if (e == null) {
-                e = new Employee(name, surname, middlename);
-                System.out.println("ADD = " + e.toString());
+        for (int i = 0; i < listOfEmployees.length; i++) {
+            if (listOfEmployees[i] == null) {
+                listOfEmployees[i] = new Employee(name, surname, middlename);
+                System.out.println("ADD = " + listOfEmployees[i].toString());
                 return true;
             }
         }
@@ -26,9 +26,9 @@ public class EmployeeBook {
 
 
     public void printAllEmployees() {
-        for (Employee e : listOfEmployees) {
-            if (e != null) {
-                System.out.println(e.toString());
+        for (int i = 0; i < listOfEmployees.length; i++) {
+            if (listOfEmployees[i] != null) {
+                System.out.println(listOfEmployees[i].toString());
             }
         }
     }
@@ -44,9 +44,9 @@ public class EmployeeBook {
     }
 
     public boolean deleteEmployee(int id) {
-        for (Employee deleteEmpl : listOfEmployees) {
-            if (deleteEmpl.getId() == id) {
-                deleteEmpl = null;
+        for (int i = 0; i < listOfEmployees.length; i++) {
+            if (listOfEmployees[i].getId() == id) {
+                listOfEmployees[i] = null;
                 return true;
             }
         }
@@ -110,11 +110,14 @@ public class EmployeeBook {
 
     public void indexOfSalary(int indexSalary) {
         int newSalary = 0;
+        int department = 0;
         for (int i = 0; i < this.listOfEmployees.length; i++) {
             if (this.listOfEmployees[i] != null) {
                 newSalary = this.listOfEmployees[i].getSalary() + (this.listOfEmployees[i].getSalary() * indexSalary) / 100;
                 this.listOfEmployees[i].setSalary(newSalary);
-                System.out.println("Новая зарплата сотрудника " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " cоставляет: " + this.listOfEmployees[i].getSalary());
+                System.out.println("Новая зарплата сотрудников:  \n");
+                printNameOfEmployees(department);
+
             }
         }
     }
@@ -171,34 +174,47 @@ public class EmployeeBook {
             if (this.listOfEmployees[i] != null && this.listOfEmployees[i].getDepartment() == department) {
                 newSalary = this.listOfEmployees[i].getSalary() + (this.listOfEmployees[i].getSalary() * indexSalary) / 100;
                 this.listOfEmployees[i].setSalary(newSalary);
-                System.out.println("Новая зарплата сотрудника " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " cоставляет: " + this.listOfEmployees[i].getSalary());
+                System.out.println("Новая зарплата сотрудников:  \n");
+                printNameOfEmployees(department);
             }
         }
     }
+
+    public void printNameOfEmployees(int department) {
+        for (int i = 0; i < this.listOfEmployees.length; i++) {
+            if (this.listOfEmployees[i] != null && department == 0) {
+                System.out.println("ID: " + this.listOfEmployees[i].getId() + " " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " " + this.listOfEmployees[i].getSalary());
+            } else if (this.listOfEmployees[i] != null && this.listOfEmployees[i].getDepartment() == department) {
+                System.out.println("ID: " + this.listOfEmployees[i].getId() + " " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " " + this.listOfEmployees[i].getSalary());
+
+            }
+        }
+    }
+
 
     public void departmentNameOfEmployees(int department) {
         System.out.println("ФИО сотрудников отдела " + department + ": ");
         for (int i = 0; i < this.listOfEmployees.length; i++) {
             if (this.listOfEmployees[i] != null && this.listOfEmployees[i].getDepartment() == department) {
-                System.out.println("ID: " + this.listOfEmployees[i].getId() + " " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " " + this.listOfEmployees[i].getSalary());
+                printNameOfEmployees(department);
             }
         }
     }
 
-    public void biggerSalaryNameOfEmployees(int borderSalary) {
+    public void biggerSalaryNameOfEmployees(int borderSalary, int department) {
         System.out.println("Сотруники зарплата которых больше " + borderSalary + ": ");
         for (int i = 0; i < this.listOfEmployees.length; i++) {
             if (this.listOfEmployees[i] != null && this.listOfEmployees[i].getSalary() >= borderSalary) {
-                System.out.println("ID: " + this.listOfEmployees[i].getId() + " " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " " + this.listOfEmployees[i].getSalary());
+                printNameOfEmployees(department);
             }
         }
     }
 
-    public void smallerSalaryNameOfEmployees(int borderSalary) {
+    public void smallerSalaryNameOfEmployees(int borderSalary, int department) {
         System.out.println("Сотруники зарплата которых меньше " + borderSalary + ": ");
         for (int i = 0; i < this.listOfEmployees.length; i++) {
             if (this.listOfEmployees[i] != null && this.listOfEmployees[i].getSalary() <= borderSalary) {
-                System.out.println("ID: " + this.listOfEmployees[i].getId() + " " + this.listOfEmployees[i].getSurname() + " " + this.listOfEmployees[i].getName() + " " + this.listOfEmployees[i].getMiddlename() + " " + this.listOfEmployees[i].getSalary());
+                printNameOfEmployees(department);
             }
         }
     }
